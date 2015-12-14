@@ -110,7 +110,3 @@ class Attributes:
 		self._toughness += value
 		self._quickness += value
 		return
-    
-
-
-
