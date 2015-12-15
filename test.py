@@ -1,4 +1,6 @@
-import Attributes
+import Creature
 
-att1 = Attributes.Attributes()
-print att1.GetStrength()
+x = Creature.Creature("Steinar")
+print x.GetMaximumHealth()
+print x.GetMaximumInitiative()
+print x.GetCurrentHealth()

@@ -11,8 +11,6 @@ class Attributes:
 	# _defConstVal adjusts the constructors default value for attributes
 	_defConstVal = 10;
 
-
-
 	# Constructor, creates private instance variables for attributes
 	def __init__(self, strength = _defConstVal,stamina = _defConstVal,spellpower = _defConstVal,concentration = _defConstVal,toughness = _defConstVal, quickness = _defConstVal):
  		self._strength = strength

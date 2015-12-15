@@ -7,6 +7,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "Attributes.py",
+			"settings":
+			{
+				"buffer_size": 2917,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "test.py",
+			"settings":
+			{
+				"buffer_size": 74,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "Packages/Python/Python.sublime-build",
 	"build_system_choices":
@@ -67,8 +83,13 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/C/Users/steinar/Documents/GitHub/RPG"
+	],
 	"file_history":
 	[
+		"/C/Users/steinar/Documents/GitHub/RPG/.gitignore",
 		"/C/Users/steinar/Desktop/RPG/Attributes.py",
 		"/C/Users/steinar/Downloads/test.py",
 		"/C/Users/steinar/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
@@ -118,6 +139,70 @@
 	"groups":
 	[
 		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Attributes.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2917,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2034,
+								2034
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "test.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 74,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								74,
+								74
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
 			"sheets":
 			[
 			]
@@ -129,7 +214,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 38.0
 	},
 	"layout":
 	{
@@ -140,6 +225,12 @@
 				0,
 				1,
 				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
 			]
 		],
 		"cols":
@@ -150,6 +241,7 @@
 		"rows":
 		[
 			0.0,
+			0.743899678445,
 			1.0
 		]
 	},
