@@ -11,10 +11,15 @@ class Creature:
 	def __init__(self, name):
 		self._name = name
 		self._attributes = Attributes.Attributes()
-		self._curHealth = 0
-		self._curInitiative = 0
+		self._curHealth = self.GetMaximumHealth()
+		self._curInitiative = self.GetMaximumInitiative
 		self._abilities = []
 
+	def GetName(self):
+		return self._name
+
+	def SetName(self,n):
+		self._name = n
 
 	# Sets all attributes to a fixed value n
 	def SetAttributes(self,n):
@@ -43,14 +48,14 @@ class Creature:
 	def SetCurrentHealth(self,n):
 		self._curHealth = n
 
-	def SetCurrentHealth(self):
-		self._curHealth = GetMaximumHealth()
+	def SetCurrentHealthMax(self):
+		self._curHealth = self.GetMaximumHealth()
 
 	def SetCurrentInitiative(self,n):
 		self._curInitiative = n
 
-	def SetCurrentInitiative(self):
-		self._curInitiative = GetMaximumInitiative()
+	def SetCurrentInitiativeMax(self):
+		self._curInitiative = self.GetMaximumInitiative()
 
 	def AddCurrentHealth(self,n):
 		self._curHealth += n
