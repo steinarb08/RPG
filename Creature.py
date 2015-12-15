@@ -1,4 +1,5 @@
 import Attributes
+import Ability
 class Creature:
 
 	# Constant variables used to calculate various things
@@ -12,6 +13,7 @@ class Creature:
 		self._attributes = Attributes.Attributes()
 		self._curHealth = 0
 		self._curInitiative = 0
+		self._abilities = []
 
 
 	# Sets all attributes to a fixed value n
@@ -56,3 +58,8 @@ class Creature:
 	def AddCurrentInitiative(self,n):
 		self._curInitiative += n
 
+	def AddAbility(self,n):
+		self._abilities.append(n)
+
+	def GetAbilities(self):
+		return self._abilities
