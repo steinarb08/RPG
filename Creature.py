@@ -42,7 +42,7 @@ class Creature:
 	def GetCurrentHealth(self):
 		return self._curHealth
 
-	def GetCurrentIntiative(self):
+	def GetCurrentInitiative(self):
 		return self._curInitiative
 
 	def SetCurrentHealth(self,n):
