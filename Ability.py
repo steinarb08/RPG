@@ -30,3 +30,6 @@ class Ability:
 
 	def SetTargetNumber(self,number):
 		self._targetNumber = number
+
+	def GetTargetType(self):
+		return self._targetType

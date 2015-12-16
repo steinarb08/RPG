@@ -68,3 +68,18 @@ class Creature:
 
 	def GetAbilities(self):
 		return self._abilities
+
+	def GetAbility(self,n):
+		return self._abilities[n]
+
+	def IsDead(self):
+		if self.GetCurrentHealth <0:
+			return True
+		else:
+			return False
+
+	def IsAlive(self):
+		if self.GetCurrentHealth > 0:
+			return True
+		else:
+			return False

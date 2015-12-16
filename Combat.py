@@ -101,6 +101,11 @@ class Combat:
 	def IsPlayerTeam(self):
 		return self._isPlayerTeam
 
+	def GetPlayerTeam(self):
+		return self._playerTeam
+
+	def GetEnemyTeam(self):
+		return self._enemyTeam
 
 
 
