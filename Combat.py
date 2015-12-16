@@ -13,6 +13,7 @@ class Combat:
 		self._curCreature = 0
 		self._curTeam = 0
 		self._oppTeam = 0
+		self._isPlayerTeam = 0
 		self._slowestCreature = 0
 		
 
@@ -40,6 +41,7 @@ class Combat:
 				curCreature = self._playerTeam.GetTeamMember(i)
 				curTeam = self._playerTeam
 				oppTeam = self._enemyTeam
+				self._isPlayerTeam = 1
 
 		for i in range(self._enemyTeam.GetTeamSize()):
 			if(self._enemyTeam.GetTeamMember(i).GetCurrentInitiative() > lowestInit and self._enemyTeam.GetTeamMember(i).GetCurrentHealth() > 0):
@@ -47,6 +49,7 @@ class Combat:
 				oppTeam = self._playerTeam
 				curCreature = curTeam.GetTeamMember(i)
 				lowestInit = curCreature.GetCurrentInitiative()
+				self._isPlayerTeam = 0
 
 		self._curCreature = curCreature
 		self._curTeam = curTeam
@@ -94,6 +97,9 @@ class Combat:
 
 	def GetCurrentCreature(self):
 		return self._curCreature
+
+	def IsPlayerTeam(self):
+		return self._isPlayerTeam
 
 
 
