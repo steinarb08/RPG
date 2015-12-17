@@ -12,6 +12,7 @@ class CombatAI:
 	def AI(self):
 		self.ChooseAbility()
 		self.ChooseTarget()
+		self.ExecuteAbility()
 
 	def ChooseAbility(self): #chooses basic attack
 		self._ability = self._curCreature.GetAbility(0)

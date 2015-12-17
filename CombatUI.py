@@ -30,7 +30,7 @@ class CombatUI:
 				self.ExecuteAbility(self._combat.GetCurrentCreature().GetAbility(0))
 				self._combat.NextCreature()
 			elif choice == '2':
-				print 'Ability'
+				self.ChooseAbility()
 			elif choice == '3':
 				self.PrintAllies()
 			elif choice == '4':
@@ -78,3 +78,10 @@ class CombatUI:
 		for i in range(ability.GetTargetNumber()):
 			executeProcess = AbilityExecute.AbilityExecute(ability,self._combat.GetCurrentCreature(),self._targetSys.GetChosenTarget(i))
 			executeProcess.UseAbility()
+
+
+	def ChooseAbility(self):
+		print '----------------------------'
+		for i in range(len(self._combat.GetCurrentCreature().GetAbilities())):
+			print("{}) {}".format(i,self._combat.GetCurrentCreature().GetAbility(i).GetName()))
+		choice = raw_input('Choose an ability: ')
