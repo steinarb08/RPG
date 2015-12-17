@@ -7,8 +7,8 @@ class AbilityExecute:
 		self._ability = ability
 		self._caster = caster
 		self._target = target
-		self._scaleAttribute = 0
-		self._scalerType = 0
+		self._scaleAttribute = 0 # Ammount of attribute caster has
+		self._scalerType = 0 # Type of scaler that is used (strength,spellpower...)
 
 	# Only function called outside class
 	def UseAbility(self):
@@ -21,6 +21,16 @@ class AbilityExecute:
 				self._ApplyPhysicalDamage(Effects[i])
 			elif Effects[i].GetEffectType() == 1: #Heal
 				self._ApplyHeal(Effects[i])
+			elif Effects[i].GetEffectType() == 2: #Fire Damage
+				self._ApplyFireDamage(Effects[i])
+			elif Effects[i].GetEffectType() == 3: #Water Damage
+				self._ApplyWaterDamage(Effects[i])
+			elif Effects[i].GetEffectType() == 4: #Air Damage
+				self._ApplyAirDamage(Effects[i])
+			elif Effects[i].GetEffectType() == 5: #Darkness Damage
+				self._ApplyDarknessDamage(Effects[i])
+			elif Effects[i].GetEffectType() == 6: #Light Damage
+				self._ApplyLightDamage(Effects[i])
 
 
 	def _GetScalerValue(self,i):
@@ -44,3 +54,18 @@ class AbilityExecute:
 	def _ApplyHeal(self,effect):
 		heal = effect.GetTotalValue(self._scaleAttribute)
 		self._target.AddCurrentHealth(heal)
+	def _ApplyFireDamage(self,effect):
+		damage = effect.GetTotalValue(self._scaleAttribute)
+		self._target.AddCurrentHealth(-damage)
+	def _ApplyWaterDamage(self,effect):
+		damage = effect.GetTotalValue(self._scaleAttribute)
+		self._target.AddCurrentHealth(-damage)
+	def _ApplyAirDamage(self,effect):
+		damage = effect.GetTotalValue(self._scaleAttribute)
+		self._target.AddCurrentHealth(-damage)
+	def _ApplyDarknessDamage(self,effect):
+		damage = effect.GetTotalValue(self._scaleAttribute)
+		self._target.AddCurrentHealth(-damage)
+	def _ApplyLightDamage(self,effect):
+		damage = effect.GetTotalValue(self._scaleAttribute)
+		self._target.AddCurrentHealth(-damage)
