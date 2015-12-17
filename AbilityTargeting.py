@@ -16,14 +16,15 @@ class AbilityTargeting:
 	def GetPossibleTargets(self):
 		targetType = self._ability.GetTargetType()
 
-		if targetType == 1 or 3: # Enemy
+		if targetType == 1: #Enemy
 			self._GetEnemyTargets()
 
-		if targetType == 2 or 4: # Friend
-                        self._GetFriendTargets()
+		if targetType == 3: #Friend
+			self._GetFriendTargets()
 
-                if targetType == 5: # Any
-                        slef._GetAnyTargets()
+		if targetType == 5: #Any
+			self._GetFriendTargets()
+			self._GetEnemyTargets()
 
 		return self._possibleTargets
 
@@ -43,14 +44,6 @@ class AbilityTargeting:
 				self._possibleTargets.append(self._enemyTeam.GetTeamMember(i))
 
 	def _GetFriendTargets(self):
-                for i in range(self._friendTeam.GetTeamSize()):
-                        if self._friendTeam.GetTeamMember(i).IsAlive():
-                                self._possibleTargets.append(self._friendTeam.GetTeamMember(i))
-
-        def _GetAnyTargets(self):
-                for i in range(self._friendTeam.GetTeamSize()):
-                        if self._friendTeam.GetTeamMember(i).IsAlive():
-                                self._possibleTargets.append(self._friendTeam.GetTeamMember(i))
-                for j in range(self._enemyTeam.GetTeamSize()):
-			if self._enemyTeam.GetTeamMember(j).IsAlive():
-				self._possibleTargets.append(self._enemyTeam.GetTeamMember(j))
+		for i in range(self._friendTeam.GetTeamSize()):
+			if self._friendTeam.GetTeamMember(i).IsAlive():
+				self._possibleTargets.append(self._friendTeam.GetTeamMember(i))
