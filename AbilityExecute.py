@@ -16,8 +16,8 @@ class AbilityExecute:
 
 		for i in range(len(Effects)):
 			self._GetScalerValue(i)
+			self._scalerType = Effects[i].GetScalerType()
 			if Effects[i].GetEffectType() == 0: #physical damage
-				self._scalerType = Effects[i].GetScalerType()
 				self._ApplyPhysicalDamage(Effects[i])
 			elif Effects[i].GetEffectType() == 1: #Heal
 				self._ApplyHeal(Effects[i])
