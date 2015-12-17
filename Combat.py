@@ -34,23 +34,20 @@ class Combat:
 		curCreature = 0
 		curTeam = 0
 		oppTeam = 0
-		print lowestInit
 		for i in range(self._playerTeam.GetTeamSize()):
 			if(self._playerTeam.GetTeamMember(i).GetCurrentInitiative() > lowestInit and self._enemyTeam.GetTeamMember(i).GetCurrentHealth() > 0):
 				lowestInit = self._playerTeam.GetTeamMember(i).GetCurrentInitiative()
 				curCreature = self._playerTeam.GetTeamMember(i)
 				curTeam = self._playerTeam
 				oppTeam = self._enemyTeam
-				self._isPlayerTeam = 1
-		print lowestInit
+				self._isPlayerTeam = True
 		for i in range(self._enemyTeam.GetTeamSize()):
 			if(self._enemyTeam.GetTeamMember(i).GetCurrentInitiative() > lowestInit and self._enemyTeam.GetTeamMember(i).GetCurrentHealth() > 0):
 				curTeam = self._enemyTeam
 				oppTeam = self._playerTeam
 				curCreature = curTeam.GetTeamMember(i)
 				lowestInit = curCreature.GetCurrentInitiative()
-				self._isPlayerTeam = 0
-		print lowestInit
+				self._isPlayerTeam = False
 		self._curCreature = curCreature
 		self._curTeam = curTeam
 		self._oppTeam = oppTeam

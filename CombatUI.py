@@ -4,6 +4,7 @@ import Combat
 import sys
 import AbilityTargeting
 import AbilityExecute
+import CombatAI
 class CombatUI:
 
 
@@ -12,30 +13,35 @@ class CombatUI:
 		self._targetSys = 0
 
 	def MainScreen(self):
-		print("{}'s turn!".format(self._combat.GetCurrentCreature().GetName()))
-		print '----------------------------'
-		print '1) Attack'
-		print '2) Use ability'
-		print '3) See ally status'
-		print '4) See enemy status'
-		print '0) Quit'
+		if(self._combat.IsPlayerTeam()):
+			print("{}'s turn!".format(self._combat.GetCurrentCreature().GetName()))
+			print '----------------------------'
+			print '1) Attack'
+			print '2) Use ability'
+			print '3) See ally status'
+			print '4) See enemy status'
+			print '0) Quit'
 		
-		choice = raw_input('Choose an action: ')
-		if choice == '0':
-			sys.exit()
-		elif choice == '1':
-			self.ChooseTarget(self._combat.GetCurrentCreature().GetAbility(0))
-			self.ExecuteAbility(self._combat.GetCurrentCreature().GetAbility(0))
-			self._combat.NextCreature()
-		elif choice == '2':
-			print 'Ability'
-		elif choice == '3':
-			self.PrintAllies()
-		elif choice == '4':
-			self.PrintEnemies()
+			choice = raw_input('Choose an action: ')
+			if choice == '0':
+				sys.exit()
+			elif choice == '1':
+				self.ChooseTarget(self._combat.GetCurrentCreature().GetAbility(0))
+				self.ExecuteAbility(self._combat.GetCurrentCreature().GetAbility(0))
+				self._combat.NextCreature()
+			elif choice == '2':
+				print 'Ability'
+			elif choice == '3':
+				self.PrintAllies()
+			elif choice == '4':
+				self.PrintEnemies()
+			else:
+				print 'Invalid input!'
+				self.MainScreen()
 		else:
-			print 'Invalid input!'
-			self.MainScreen()
+			ai = CombatAI.CombatAI(self._combat.GetPlayerTeam(),self._combat.GetEnemyTeam(),self._combat.GetCurrentCreature())
+			ai.AI()
+			self._combat.NextCreature()
 
 
 	def PrintAllies(self):

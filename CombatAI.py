@@ -14,7 +14,7 @@ class CombatAI:
 		self.ChooseTarget()
 
 	def ChooseAbility(self): #chooses basic attack
-		self._ability = creature.GetAbility(0)
+		self._ability = self._curCreature.GetAbility(0)
 
 
 	def ChooseTarget(self): #Chooses creature with lowest health
@@ -23,10 +23,10 @@ class CombatAI:
 
 	def FindLowestHealthEnemy(self):
 		creature = 0
-		healthCompare = playerTeam.GetHighestHealth()
-		for i in range(playerTeam.GetTeamSize()):
-			if playerTeam.GetTeamMember(i).GetCurrentHealth() <= healthCompare:
-				creature = playerTeam.GetTeamMember(i)
+		healthCompare = self._playerTeam.GetHighestHealth()
+		for i in range(self._playerTeam.GetTeamSize()):
+			if self._playerTeam.GetTeamMember(i).GetCurrentHealth() <= healthCompare:
+				creature = self._playerTeam.GetTeamMember(i)
 				healthCompare = creature.GetCurrentHealth()
 		return creature
 
