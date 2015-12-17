@@ -34,7 +34,7 @@ class Combat:
 		curCreature = 0
 		curTeam = 0
 		oppTeam = 0
-
+		print lowestInit
 		for i in range(self._playerTeam.GetTeamSize()):
 			if(self._playerTeam.GetTeamMember(i).GetCurrentInitiative() > lowestInit and self._enemyTeam.GetTeamMember(i).GetCurrentHealth() > 0):
 				lowestInit = self._playerTeam.GetTeamMember(i).GetCurrentInitiative()
@@ -42,7 +42,7 @@ class Combat:
 				curTeam = self._playerTeam
 				oppTeam = self._enemyTeam
 				self._isPlayerTeam = 1
-
+		print lowestInit
 		for i in range(self._enemyTeam.GetTeamSize()):
 			if(self._enemyTeam.GetTeamMember(i).GetCurrentInitiative() > lowestInit and self._enemyTeam.GetTeamMember(i).GetCurrentHealth() > 0):
 				curTeam = self._enemyTeam
@@ -50,7 +50,7 @@ class Combat:
 				curCreature = curTeam.GetTeamMember(i)
 				lowestInit = curCreature.GetCurrentInitiative()
 				self._isPlayerTeam = 0
-
+		print lowestInit
 		self._curCreature = curCreature
 		self._curTeam = curTeam
 		self._oppTeam = oppTeam
@@ -89,11 +89,19 @@ class Combat:
 		for i in range(self._playerTeam.GetTeamSize()):
 			self._playerTeam.GetTeamMember(i).SetCurrentInitiativeMax()
 		for i in range(self._enemyTeam.GetTeamSize()):
-			self.enemyTeam.GetTeamMember(i).SetCurrentInitiativeMax()
+			self._enemyTeam.GetTeamMember(i).SetCurrentInitiativeMax()
 
 	def EndRoundCheck(self):
-		if(self._curCreature.GetCurrentInitiative() < self._slowestCreature.GetMaximumInitiative()):
+		newRound = True
+		for i in range(self._playerTeam.GetTeamSize()):
+			if(self._playerTeam.GetTeamMember(i).GetCurrentInitiative() >= self._slowestCreature.GetMaximumInitiative()):
+				newRound = False
+		for i in range(self._enemyTeam.GetTeamSize()):
+			if(self._enemyTeam.GetTeamMember(i).GetCurrentInitiative() >= self._slowestCreature.GetMaximumInitiative()):
+				newRound = False
+		if newRound:
 			self.NewRound()
+
 
 	def GetCurrentCreature(self):
 		return self._curCreature

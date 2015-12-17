@@ -12,7 +12,6 @@ class AbilityTargeting:
 		self._possibleTargets = []
 
 
-	# This is the only function called from outside this class!
 	def GetPossibleTargets(self):
 		targetType = self._ability.GetTargetType()
 
@@ -21,8 +20,15 @@ class AbilityTargeting:
 
 		return self._possibleTargets
 
+	def AddTarget(self,creature):
+		self._chosenTargets.append(creature)
 
 
+	def GetAllChosenTargets(self):
+		return self._chosenTargets
+
+	def GetChosenTarget(self,n):
+		return self._chosenTargets[n]
 
 	def _GetSingleEnemyTargets(self):
 		for i in range(self._enemyTeam.GetTeamSize()):

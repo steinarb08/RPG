@@ -13,4 +13,10 @@ class AbilityEffect:
 
 
 	def GetTotalValue(self,attributenum):
-		return self._baseValue + scalerValue*attributenum
+		return self._baseValue + self._scalerValue*attributenum
+
+	def GetEffectType(self):
+		return self._type
+
+	def GetScalerType(self):
+		return self._scalerType

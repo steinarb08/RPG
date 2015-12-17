@@ -3,13 +3,16 @@ import Creature
 import Combat
 import sys
 import AbilityTargeting
+import AbilityExecute
 class CombatUI:
 
 
 	def __init__(self,playerTeam,enemyTeam):
 		self._combat = Combat.Combat(playerTeam,enemyTeam)
+		self._targetSys = 0
 
 	def MainScreen(self):
+		print("{}'s turn!".format(self._combat.GetCurrentCreature().GetName()))
 		print '----------------------------'
 		print '1) Attack'
 		print '2) Use ability'
@@ -22,6 +25,8 @@ class CombatUI:
 			sys.exit()
 		elif choice == '1':
 			self.ChooseTarget(self._combat.GetCurrentCreature().GetAbility(0))
+			self.ExecuteAbility(self._combat.GetCurrentCreature().GetAbility(0))
+			self._combat.NextCreature()
 		elif choice == '2':
 			print 'Ability'
 		elif choice == '3':
@@ -51,13 +56,19 @@ class CombatUI:
 
 
 	def ChooseTarget(self,ability):
-		targetSys = AbilityTargeting.AbilityTargeting(self._combat.GetPlayerTeam(),self._combat.GetEnemyTeam(),ability)
-		posTargets = targetSys.GetPossibleTargets()
-		print '----------------------------'
-		for i in range(len(posTargets)):
-			name = posTargets[i].GetName()
-			curh = posTargets[i].GetCurrentHealth()
-			maxh = posTargets[i].GetMaximumHealth()
-			print("{}) {} - {}/{} Health".format(i,name,curh,maxh))
-		target = int(raw_input("Choose a target: "))
-		# To be continued...
+		self._targetSys = AbilityTargeting.AbilityTargeting(self._combat.GetPlayerTeam(),self._combat.GetEnemyTeam(),ability)
+		posTargets = self._targetSys.GetPossibleTargets()
+		for i in range(ability.GetTargetNumber()):
+			print '----------------------------'
+			for i in range(len(posTargets)):
+				name = posTargets[i].GetName()
+				curh = posTargets[i].GetCurrentHealth()
+				maxh = posTargets[i].GetMaximumHealth()
+				print("{}) {} - {}/{} Health".format(i,name,curh,maxh))
+			target = int(raw_input("Choose a target: "))
+			self._targetSys.AddTarget(posTargets[target])
+
+	def ExecuteAbility(self,ability):
+		for i in range(ability.GetTargetNumber()):
+			executeProcess = AbilityExecute.AbilityExecute(ability,self._combat.GetCurrentCreature(),self._targetSys.GetChosenTarget(i))
+			executeProcess.UseAbility()
