@@ -16,15 +16,24 @@ class AbilityTargeting:
 	def GetPossibleTargets(self):
 		targetType = self._ability.GetTargetType()
 
-		if targetType == 1: #Enemy
+
+		if targetType == 0: #Self
+			self.AddTarget(self._curCreature)
+
+		if targetType == 1 or 3: #Enemy
 			self._GetEnemyTargets()
 
-		if targetType == 3: #Friend
+		if targetType == 2 or 4: #Friend
 			self._GetFriendTargets()
 
 		if targetType == 5: #Any
 			self._GetFriendTargets()
 			self._GetEnemyTargets()
+
+		if targetType == 7: #All Enemies
+			for i in range(self._enemyTeam.GetTeamSize()):
+				if self._enemyTeam.GetTeamMember(i).IsAlive():
+					self.AddTarget(self._enemyTeam.GetTeamMember(i))
 
 		return self._possibleTargets
 

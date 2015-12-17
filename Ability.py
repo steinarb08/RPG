@@ -1,7 +1,8 @@
 import AbilityEffect
 class Ability:
 
-	TargetType = ('Self','Enemy','Friend','Enemies','Friends','Any','All')
+	TargetType = ('Self','Enemy','Friend','Enemies','Friends','Any','All','AllEnemies',
+		'AllFriends','Random','RandomEnemy','RandomFriend')
 
 	def __init__(self,name,targettype,targetnum):
 		self._name = name

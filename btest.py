@@ -5,7 +5,7 @@ import Combat
 import Ability
 import CombatUI
 import AbilityEffect
-attack = Ability.Ability('Attack',5,1)
+attack = Ability.Ability('Attack',0,1)
 effAttack = AbilityEffect.AbilityEffect('basicAttack',0,0,1,1)
 attack.AddEffect(effAttack)
 c1 = Creature.Creature("Steinar")
