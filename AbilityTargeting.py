@@ -35,6 +35,12 @@ class AbilityTargeting:
 				if self._enemyTeam.GetTeamMember(i).IsAlive():
 					self.AddTarget(self._enemyTeam.GetTeamMember(i))
 
+		if targetType == 8: #All Friends
+			for i in range(self._friendTeam.GetTeamSize()):
+				if self._friendTeam.GetTeamMember(i).IsAlive():
+					self.AddTarget(self._friendTeam.GetTeamMember(i))
+
+
 		return self._possibleTargets
 
 	def AddTarget(self,creature):
