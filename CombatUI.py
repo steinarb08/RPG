@@ -64,18 +64,20 @@ class CombatUI:
 	def ChooseTarget(self,ability):
 		self._targetSys = AbilityTargeting.AbilityTargeting(self._combat.GetPlayerTeam(),self._combat.GetEnemyTeam(),ability,self._combat.GetCurrentCreature())
 		posTargets = self._targetSys.GetPossibleTargets()
-		for i in range(ability.GetTargetNumber()):
-			print '----------------------------'
-			for i in range(len(posTargets)):
-				name = posTargets[i].GetName()
-				curh = posTargets[i].GetCurrentHealth()
-				maxh = posTargets[i].GetMaximumHealth()
-				print("{}) {} - {}/{} Health".format(i,name,curh,maxh))
-			target = int(raw_input("Choose a target: "))
-			self._targetSys.AddTarget(posTargets[target])
+		if ability.GetTargetType() > 0 and ability.GetTargetType() < 6:
+			for i in range(ability.GetTargetNumber()):
+				print '----------------------------'
+				for i in range(len(posTargets)):
+					name = posTargets[i].GetName()
+					curh = posTargets[i].GetCurrentHealth()
+					maxh = posTargets[i].GetMaximumHealth()
+					print("{}) {} - {}/{} Health".format(i,name,curh,maxh))
+				target = int(raw_input("Choose a target: "))
+				self._targetSys.AddTarget(posTargets[target])
+
 
 	def ExecuteAbility(self,ability):
-		for i in range(ability.GetTargetNumber()):
+		for i in range(len(self._targetSys.GetAllChosenTargets())):
 			executeProcess = AbilityExecute.AbilityExecute(ability,self._combat.GetCurrentCreature(),self._targetSys.GetChosenTarget(i))
 			executeProcess.UseAbility()
 
