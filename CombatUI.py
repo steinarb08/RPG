@@ -56,7 +56,7 @@ class CombatUI:
 
 
 	def ChooseTarget(self,ability):
-		self._targetSys = AbilityTargeting.AbilityTargeting(self._combat.GetPlayerTeam(),self._combat.GetEnemyTeam(),ability)
+		self._targetSys = AbilityTargeting.AbilityTargeting(self._combat.GetPlayerTeam(),self._combat.GetEnemyTeam(),ability,self._combat.GetCurrentCreature())
 		posTargets = self._targetSys.GetPossibleTargets()
 		for i in range(ability.GetTargetNumber()):
 			print '----------------------------'
