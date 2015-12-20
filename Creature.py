@@ -5,7 +5,7 @@ class Creature:
 	# Constant variables used to calculate various things
 	_constHealth = 10
 	_constInitiative = 10
-
+	_equipmentSlots = 7
 
 	# Constructor, creates a private variable _name from input and creates base attributes
 	def __init__(self, name):
@@ -17,8 +17,12 @@ class Creature:
 		self._effects = []
 		self._effDuration = []
 		self._effCaster = []
-		self._itemsEquipped = []
 		self._itemsInventory = []
+		self._itemsEquipped = []
+
+		for i in range(self._equipmentSlots):
+			self._itemsEquipped.append(None)
+
 
 	def GetName(self):
 		return self._name
