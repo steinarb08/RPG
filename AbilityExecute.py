@@ -32,9 +32,19 @@ class AbilityExecute:
 			elif Effects[i].GetEffectType() == 6: #Light Damage
 				self._ApplyLightDamage(Effects[i])
 			elif Effects[i].GetEffectType() == 7: #Stunned
-				print "stunned"
+				self._target.AddEffect(Effects[i],self._caster)
+			elif Effects[i].GetEffectType() == 8: #Physical DoT
+				self._target.AddEffect(Effects[i],self._caster)
 
 
+	def UsePeriodicAbility(self):
+		Effects = self._ability.GetEffects()
+
+		for i in range(len(Effects)):
+			self._GetScalerValue(i)
+			self._scalerType = Effects[i].GetScalerType()
+			if Effects[i].GetEffectType() == 8: #Physical DoT
+				self._ApplyPhysicalDamage(Effects[i])
 
 
 	def _GetScalerValue(self,i):

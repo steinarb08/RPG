@@ -30,7 +30,10 @@ class CombatUI:
 				self.ExecuteAbility(self._combat.GetCurrentCreature().GetAbility(0))
 				self._combat.NextCreature()
 			elif choice == '2':
-				self.ChooseAbility()
+				curAbility = self.ChooseAbility()
+				self.ChooseTarget(self._combat.GetCurrentCreature().GetAbility(curAbility))
+				self.ExecuteAbility(self._combat.GetCurrentCreature().GetAbility(curAbility))
+				self._combat.NextCreature()
 			elif choice == '3':
 				self.PrintAllies()
 			elif choice == '4':
@@ -39,6 +42,7 @@ class CombatUI:
 				print 'Invalid input!'
 				self.MainScreen()
 		else:
+			print self._combat.GetCurrentCreature().GetName()
 			ai = CombatAI.CombatAI(self._combat.GetPlayerTeam(),self._combat.GetEnemyTeam(),self._combat.GetCurrentCreature())
 			ai.AI()
 			self._combat.NextCreature()
@@ -86,4 +90,5 @@ class CombatUI:
 		print '----------------------------'
 		for i in range(len(self._combat.GetCurrentCreature().GetAbilities())):
 			print("{}) {}".format(i,self._combat.GetCurrentCreature().GetAbility(i).GetName()))
-		choice = raw_input('Choose an ability: ')
+		choice = int(raw_input('Choose an ability: '))
+		return choice

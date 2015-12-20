@@ -87,9 +87,9 @@ class Creature:
 	def SetDuration(self,n,i):
 		self._effDuration[n] = i
 
-	def AddEffect(self, eff, dur, cas):
+	def AddEffect(self, eff, cas):
 		self._effects.append(eff)
-		self._effDuration.append(dur)
+		self._effDuration.append(eff.GetDuration())
 		self._effCaster.append(cas)
 
 	def ResetEffects(self):
