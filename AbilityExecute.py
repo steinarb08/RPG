@@ -35,16 +35,41 @@ class AbilityExecute:
 				self._target.AddEffect(Effects[i],self._caster)
 			elif Effects[i].GetEffectType() == 8: #Physical DoT
 				self._target.AddEffect(Effects[i],self._caster)
+			elif Effects[i].GetEffectType() == 9: #HoT
+				self._target.AddEffect(Effects[i],self._caster)
+			elif Effects[i].GetEffectType() == 10: #Fire DoT
+				self._target.AddEffect(Effects[i],self._caster)
+			elif Effects[i].GetEffectType() == 11: #Water DoT
+				self._target.AddEffect(Effects[i],self._caster)
+			elif Effects[i].GetEffectType() == 12: #Air DoT
+				self._target.AddEffect(Effects[i],self._caster)
+			elif Effects[i].GetEffectType() == 13: #Darkness DoT
+				self._target.AddEffect(Effects[i],self._caster)
+			elif Effects[i].GetEffectType() == 14: #Light DoT
+				self._target.AddEffect(Effects[i],self._caster)
 
 
 	def UsePeriodicAbility(self):
 		Effects = self._ability.GetEffects()
-
 		for i in range(len(Effects)):
+			print i
+			print Effects[i].GetEffectType()
 			self._GetScalerValue(i)
 			self._scalerType = Effects[i].GetScalerType()
 			if Effects[i].GetEffectType() == 8: #Physical DoT
 				self._ApplyPhysicalDamage(Effects[i])
+			elif Effects[i].GetEffectType() == 9: #HoT
+				self._ApplyHeal(Effects[i])
+			elif Effects[i].GetEffectType() == 10: #Fire DoT
+				self._ApplyFireDamage(Effects[i])
+			elif Effects[i].GetEffectType() == 11: #Water DoT
+				self._ApplyWaterDamage(Effects[i])
+			elif Effects[i].GetEffectType() == 12: #Air DoT
+				self._ApplyAirDamage(Effects[i])
+			elif Effects[i].GetEffectType() == 13: #Darkness DoT
+				self._ApplyDarknessDamage(Effects[i])
+			elif Effects[i].GetEffectType() == 14: #Light DoT
+				self._ApplyLightDamage(Effects[i])
 
 
 	def _GetScalerValue(self,i):

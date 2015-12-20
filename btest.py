@@ -7,9 +7,9 @@ import CombatUI
 import AbilityEffect
 attack = Ability.Ability('Attack',1,1)
 effAttack = AbilityEffect.AbilityEffect('basicAttack',0,0,1,1,0)
-effBest = AbilityEffect.AbilityEffect('best',8,0,1,1,3)
+effBest = AbilityEffect.AbilityEffect('best',9,0,1,1,3)
 attack.AddEffect(effAttack)
-bestAbility = Ability.Ability('BestAbility',1,1)
+bestAbility = Ability.Ability('BestAbility',0,1)
 bestAbility.AddEffect(effBest)
 c1 = Creature.Creature("Steinar")
 c1.AddAbility(attack)

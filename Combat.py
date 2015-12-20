@@ -124,12 +124,15 @@ class Combat:
 		effectExecuter = Ability.Ability('tempEffects',0,1)
 		stunned = False
 		for i in range(len(curEffects)):
-			effectExecuter.AddEffect(curEffects[i])
-			self._curCreature.SetDuration(i,curDuration[i]-1)
-			exe = AbilityExecute.AbilityExecute(effectExecuter,curCaster[i],self._curCreature)
-			exe.UsePeriodicAbility()
+			
 			if (curEffects[i].GetEffectType() == 7):
 				stunned = True
+			else:
+				effectExecuter.AddEffect(curEffects[i])
+				self._curCreature.SetDuration(i,curDuration[i]-1)
+				exe = AbilityExecute.AbilityExecute(effectExecuter,curCaster[i],self._curCreature)
+				exe.UsePeriodicAbility()
+
 			if (curDuration[i] == 0):
 				self._curCreature.RemoveEffect(i)
 		if stunned:
