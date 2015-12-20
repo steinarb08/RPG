@@ -34,3 +34,6 @@ class Ability:
 
 	def GetTargetType(self):
 		return self._targetType
+
+	def RemoveEffect(self,n):
+		self._effects.pop(n)

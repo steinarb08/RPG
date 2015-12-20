@@ -14,6 +14,9 @@ class Creature:
 		self._curHealth = self.GetMaximumHealth()
 		self._curInitiative = self.GetMaximumInitiative
 		self._abilities = []
+		self._effects = []
+		self._effDuration = []
+		self._effCaster = []
 
 	def GetName(self):
 		return self._name
@@ -71,6 +74,33 @@ class Creature:
 
 	def GetAbility(self,n):
 		return self._abilities[n]
+
+	def GetEffects(self):
+		return self._effects
+
+	def GetDurations(self):
+		return self._effDuration
+
+	def GetCaster(self):
+		return self._effCaster
+
+	def SetDuration(self,n,i):
+		self._effDuration[n] = i
+
+	def AddEffect(self, eff, dur, cas):
+		self._effects.append(eff)
+		self._effDuration.append(dur)
+		self._effCaster.append(cas)
+
+	def ResetEffects(self):
+		self._effects = []
+		self._effDuration = []
+		self._effCaster = []
+
+	def RemoveEffect(self,n):
+		self._effects.pop(n)
+		self._effDuration.pop(n)
+		self._effCaster.pop(n)
 
 	def IsDead(self):
 		if self.GetCurrentHealth <0:

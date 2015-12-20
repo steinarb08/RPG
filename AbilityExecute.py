@@ -31,6 +31,10 @@ class AbilityExecute:
 				self._ApplyDarknessDamage(Effects[i])
 			elif Effects[i].GetEffectType() == 6: #Light Damage
 				self._ApplyLightDamage(Effects[i])
+			elif Effects[i].GetEffectType() == 7: #Stunned
+				print "stunned"
+
+
 
 
 	def _GetScalerValue(self,i):

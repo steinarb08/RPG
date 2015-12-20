@@ -1,5 +1,7 @@
 import CombatTeam
 import Creature
+import Ability
+import AbilityExecute
 class Combat:
 
 	def __init__(self,playerTeam,enemyTeam):
@@ -20,10 +22,12 @@ class Combat:
 		for i in range(playerTeam.GetTeamSize()):
 			self._playerTeam.GetTeamMember(i).SetCurrentHealthMax()
 			self._playerTeam.GetTeamMember(i).SetCurrentInitiativeMax()
+			self._playerTeam.GetTeamMember(i).ResetEffects()
 
 		for i in range(enemyTeam.GetTeamSize()):
 			self._enemyTeam.GetTeamMember(i).SetCurrentHealthMax()
 			self._enemyTeam.GetTeamMember(i).SetCurrentInitiativeMax()
+			self._enemyTeam.GetTeamMember(i).ResetEffects()
 
 		self.FindCurrentCreature()
 		self.FindSlowestCreature()
@@ -79,6 +83,7 @@ class Combat:
 		self.CheckForVictory()
 		self.EndRoundCheck()
 		self.FindCurrentCreature()
+		self.EffectExecute()
 
 	def NewRound(self):
 		self._round+=1
@@ -112,5 +117,20 @@ class Combat:
 	def GetEnemyTeam(self):
 		return self._enemyTeam
 
-
-
+	def EffectExecute(self):
+		curEffects = self._curCreature.GetEffects()
+		curDuration = self._curCreature.GetDurations()
+		curCaster = self._curCreature.GetCaster()
+		effectExecuter = Ability.Ability(tempEffects,0,1)
+		stunned = False
+		for i in range(len(curEffects)):
+			effectExecuter.AddEffect(curEffects[i])
+			self._curCreature.SetDuration(i,curDuration[i]-1)
+			exe = AbilityExecute.AbilityExecute(effectExecuter,curCaster[i],self._curCreature)
+			exe.UseAbility()
+			if (curEffects[i].GetEffectType() == 7):
+				stunned = True
+			if (curDuration[i]-1 == 0):
+				self._curCreature.RemoveEffect(i)
+		if stunned:
+			self.NextCreature()
