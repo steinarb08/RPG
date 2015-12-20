@@ -1,6 +1,6 @@
 class AbilityEffect:
 
-	EffectType = ('PhysicalDamage','Heal','FireDamage','WaterDamage','AirDamage','DarknessDamage','LightDamage')
+	EffectType = ('PhysicalDamage','Heal','FireDamage','WaterDamage','AirDamage','DarknessDamage','LightDamage','Stunned')
 	ScalerType = ('Strength','Stamina','Spellpower','Concentration','Toughness','Quickness')
 
 
