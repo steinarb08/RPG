@@ -17,6 +17,8 @@ class Creature:
 		self._effects = []
 		self._effDuration = []
 		self._effCaster = []
+		self._itemsEquipped = []
+		self._itemsInventory = []
 
 	def GetName(self):
 		return self._name
@@ -113,3 +115,21 @@ class Creature:
 			return True
 		else:
 			return False
+
+
+	def StashItem(self,item):
+		self._itemsInventory.append(item)
+	def GetInventory(self):
+		return self._itemsInventory
+	def GetEquipment(self):
+		return self._itemsEquipped
+	def EquipItem(self,item):
+		slot = item.GetSlot()
+		if not self._itemsEquipped[slot]:
+			self._itemsEquipped.insert(slot,item)
+		else:
+			curItem = self._itemsEquipped[slot].pop()
+			self._itemsEquipped.insert(slot,item)
+			self._itemsInventory.append(curItem)
+	def GetItemInSlot(self,slot):
+		return self._itemsEquipped[slot]
