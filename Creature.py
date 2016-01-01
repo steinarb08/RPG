@@ -1,6 +1,10 @@
 import Attributes
 import Ability
-class Creature:
+import LoadResources
+import pygame
+import os
+from pygame.locals import *
+class Creature(pygame.sprite.Sprite):
 
 	# Constant variables used to calculate various things
 	_constHealth = 10
@@ -9,6 +13,7 @@ class Creature:
 
 	# Constructor, creates a private variable _name from input and creates base attributes
 	def __init__(self, name):
+		pygame.sprite.Sprite.__init__(self)
 		self._name = name
 		self._attributes = Attributes.Attributes()
 		self._curHealth = self.GetMaximumHealth()
@@ -19,6 +24,7 @@ class Creature:
 		self._effCaster = []
 		self._itemsInventory = []
 		self._itemsEquipped = []
+		self.SetImage()
 
 		for i in range(self._equipmentSlots):
 			self._itemsEquipped.append(None)
@@ -137,3 +143,18 @@ class Creature:
 			self._itemsInventory.append(curItem)
 	def GetItemInSlot(self,slot):
 		return self._itemsEquipped[slot]
+
+
+	def SetImage(self):
+		fullname = os.path.join('data', (self._name +'.jpg'))
+		self._image = pygame.image.load(fullname)
+		self._imagerect = self._image.get_rect()
+
+	def GetImage(self):
+		return self._image
+
+	def GetImageRect(self):
+		return self._imagerect
+
+	def update(self, pos):
+		self._rect.topleft = pos
